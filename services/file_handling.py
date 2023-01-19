@@ -1,7 +1,7 @@
 import re
 
 BOOK_PATH: str = "C:\Dev\stepik_AIOgram\\6bot_book\\book\\book.txt"
-PAGE_SIZE: int = 100
+PAGE_SIZE: int = 1050
 
 book: dict[int, str] = {}
 
@@ -28,8 +28,6 @@ def _get_part_text(text: str, start: int, size: int) -> tuple[str, int]:
     return correct_text.removesuffix(del_word), text_length
 
 
-
-
 # Функция, формирующая словарь книги
 def prepare_book(path: str):
 
@@ -38,19 +36,13 @@ def prepare_book(path: str):
 
     with open(path, "r", encoding="utf-8") as file:
         txt = file.read()
-        print(f"старт до начала цикла равен {start}")
-        while start < len(txt) and num_string < 9:
-
+        while start < len(txt) :
             text, text_length = _get_part_text(txt, start, PAGE_SIZE)
             book[num_string] = text.lstrip()
             num_string += 1
-
             start += text_length
 
-
-
-            print(book, start, len(txt))
-
+        return book
 
 
 # Вызов функции prepare_book для подготовки книги из текстового файла
