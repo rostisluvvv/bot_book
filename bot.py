@@ -31,7 +31,7 @@ async def main():
 
     dp: Dispatcher = Dispatcher(bot)
 
-    await set_main_menu
+    await set_main_menu(dp)
 
     register_all_handlers(dp)
 
