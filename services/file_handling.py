@@ -41,7 +41,6 @@ def prepare_book(path: str) -> None:
             num_string += 1
             start += text_length
 
-        return book
 
 
 # Вызов функции prepare_book для подготовки книги из текстового файла
