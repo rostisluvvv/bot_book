@@ -29,14 +29,13 @@ def _get_part_text(text: str, start: int, size: int) -> tuple[str, int]:
 
 
 # Функция, формирующая словарь книги
-def prepare_book(path: str):
-
+def prepare_book(path: str) -> None:
     start: int= 0
     num_string: int = 1
 
     with open(path, "r", encoding="utf-8") as file:
         txt = file.read()
-        while start < len(txt) :
+        while start < len(txt):
             text, text_length = _get_part_text(txt, start, PAGE_SIZE)
             book[num_string] = text.lstrip()
             num_string += 1
