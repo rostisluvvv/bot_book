@@ -1,5 +1,6 @@
 from aiogram import Dispatcher, types
 
+
 # функция для настройки кнопки меню
 async def set_main_menu(dp: Dispatcher):
     main_menu_commands = [

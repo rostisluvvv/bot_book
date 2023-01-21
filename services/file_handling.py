@@ -1,6 +1,6 @@
 import re
 
-BOOK_PATH: str = "C:\Dev\stepik_AIOgram\\6bot_book\\book\\book.txt"
+BOOK_PATH: str = "C:\Dev\stepik_AIOgram\\6bot_book\\book\Bredberi_Marsianskie-hroniki.txt"
 PAGE_SIZE: int = 1050
 
 book: dict[int, str] = {}
@@ -25,24 +25,22 @@ def _get_part_text(text: str, start: int, size: int) -> tuple[str, int]:
         del_word += '?.'
         return correct_text.removesuffix(del_word), text_length-len(del_word)
 
-    return correct_text.removesuffix(del_word), text_length
+    return correct_text.removesuffix(del_word), text_length + len(del_word)
 
 
 # Функция, формирующая словарь книги
 def prepare_book(path: str) -> None:
-    start: int= 0
-    num_string: int = 1
 
+    num_string: int = 1
     with open(path, "r", encoding="utf-8") as file:
         txt = file.read()
-        while start < len(txt):
+        start: int = 0
+        full_size_text = len(txt)
+        while start < full_size_text and num_string <400:
             text, text_length = _get_part_text(txt, start, PAGE_SIZE)
             book[num_string] = text.lstrip()
-            num_string += 1
             start += text_length
+            num_string += 1
 
-
-
-# Вызов функции prepare_book для подготовки книги из текстового файла
-print(prepare_book(BOOK_PATH))
+prepare_book(BOOK_PATH)
 
